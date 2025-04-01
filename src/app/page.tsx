@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { MainContent } from "./MainContent";
 import { SideNavigation } from "./SideNavigation";
 import { TopMenuBar } from "./TopMenuBar";
@@ -9,6 +8,7 @@ export default function Home() {
         <TopMenuBar />
         <div className="flex flex-1">
           <SideNavigation />
+          
           <div className="flex bg-zinc-800 border-[1px_solid_#494949] w-[179px]" />
           <MainContent />
         </div>

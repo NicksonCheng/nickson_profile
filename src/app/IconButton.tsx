@@ -1,19 +1,29 @@
-"use client";
-import * as React from "react";
+// IconButton.tsx
+import React from 'react';
+import Image from 'next/image';
 
 interface IconButtonProps {
-  svgContent: string;
+  icon: string;
+  alt: string;
+  onClick?: () => void;
   className?: string;
 }
 
 export const IconButton: React.FC<IconButtonProps> = ({
-  svgContent,
-  className = "",
+  icon,
+  alt,
+  onClick,
+  className = ''
 }) => {
   return (
     <button
+      onClick={onClick}
       className={`p-2 hover:opacity-80 transition-opacity ${className}`}
-      dangerouslySetInnerHTML={{ __html: svgContent }}
-    />
+    >
+      <Image
+        src={icon}
+        alt={alt}
+      />
+    </button>
   );
 };
