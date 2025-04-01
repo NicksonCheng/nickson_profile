@@ -1,8 +1,10 @@
-import Image from "next/image";
-import { MainContent } from "./MainContent";
-import { SideNavigation } from "./SideNavigation";
+"use client";
+import * as React from "react";
 import { TopMenuBar } from "./TopMenuBar";
-export default function Home() {
+import { SideNavigation } from "./SideNavigation";
+import { MainContent } from "./MainContent";
+
+export const EditorLayout: React.FC = () => {
   return (
     <div className="flex w-screen h-screen bg-white">
       <div className="flex flex-col w-full">
@@ -15,4 +17,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default EditorLayout;
