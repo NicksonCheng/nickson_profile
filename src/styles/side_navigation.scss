@@ -22,4 +22,20 @@
       margin-bottom: 3.25em;
     }
   }
+  @media (max-width: 768px) {
+    .side-navigation {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0; // Leftmost position
+      height: 100%;
+      width: 100px; // Fixed width for mobile
+      z-index: 10; // Same z-index as Files
+      transition: transform 0.3s ease-in-out;
   
+      &.visible {
+        display: flex;
+        transform: translateX(0);
+      }
+    }
+  }

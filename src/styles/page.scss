@@ -25,15 +25,17 @@
   }
 }
 
-
 @media (max-width: 768px) {
   .page-main {
-    flex-direction: row; // Keep horizontal layout
-    overflow-x: auto; // Allow horizontal scrolling if needed
-    
-    // Ensure content stays below Files when it appears
-    > *:nth-child(2) { // Targets the main content (second child)
-      flex: 1;
-    }
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* mainpage content stays in place */
+  .page-main > *:last-child {
+    position: relative;
+    z-index: 1;
+    width: 100%;
   }
 }

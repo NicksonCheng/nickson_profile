@@ -8,6 +8,9 @@ import GitForkIcon from "../../public/git.svg";
 import AccountIcon from "../../public/profile.svg";
 import SettingOutlinedIcon from "../../public/setting.svg";
 
+type NaviProps = {
+  className?: string;
+};
 const navIcons = [
   { component: FilesIcon, name: "file" },
   { component: MagnifierIcon, name: "magnifier" },
@@ -17,9 +20,9 @@ const navIcons = [
   { component: SettingOutlinedIcon, name: "setting-outlined" },
 ];
 
-export const SideNavigation: React.FC = () => {
+export const SideNavigation: React.FC<NaviProps> = ({ className }) => {
   return (
-    <nav className="side-navigation">
+    <nav className={`side-navigation ${className || ""}`}>
       <div className="top-icons">
         {navIcons.slice(0, 4).map((icon, index) => (
           <IconButton alt={icon.name} key={index} icon={icon.component} />
@@ -31,7 +34,5 @@ export const SideNavigation: React.FC = () => {
         ))}
       </div>
     </nav>
-
-
   );
 };

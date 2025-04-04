@@ -1,6 +1,4 @@
-
-
-.files{
+.files {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -13,15 +11,30 @@
     width: 200px;
     height: 100vh;
     box-sizing: border-box;
-    .file-item{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.5em;
+  
+    .file-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5em;
     }
-    @media (max-width: 768px) {
-        // Instead of absolute positioning, use flex properties
-        flex-shrink: 0; // Prevent shrinking
-        z-index: 10; // Still maintain higher z-index
+  }
+  
+  @media (max-width: 768px) {
+    .files {
+      display: none; // Hidden by default on mobile when not rendered
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 80%;
+      max-width: 300px;
+      z-index: 10;
+      transition: transform 0.3s ease-in-out;
+  
+      &.visible {
+        display: flex; // Shown with flex when rendered and visible
+        transform: translateX(0); // Slide in
+      }
     }
-}
+  }
