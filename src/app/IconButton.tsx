@@ -18,7 +18,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`p-2 hover:opacity-80 transition-opacity ${className}`}
+      className={`p-2 hover:opacity-80 transition-opacity  ${className}`}
     >
       <Image
         src={icon}

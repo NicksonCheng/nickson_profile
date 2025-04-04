@@ -1,0 +1,25 @@
+.side-navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    background-color: #27272a;
+    border: 1px solid #494949;
+    width: 82px;
+    height: 100vh;
+    box-sizing: border-box;
+  
+    .top-icons,
+    .bottom-icons {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+    }
+  
+    .bottom-icons {
+      margin-bottom: 3.25em;
+    }
+  }
+  

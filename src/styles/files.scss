@@ -1,0 +1,27 @@
+
+
+.files{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 1.25rem;
+    padding-left: 1.25em;
+    gap: 0.5em;
+    background-color: #27272a;
+    border: 1px solid #494949;
+    width: 200px;
+    height: 100vh;
+    box-sizing: border-box;
+    .file-item{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5em;
+    }
+    @media (max-width: 768px) {
+        // Instead of absolute positioning, use flex properties
+        flex-shrink: 0; // Prevent shrinking
+        z-index: 10; // Still maintain higher z-index
+    }
+}

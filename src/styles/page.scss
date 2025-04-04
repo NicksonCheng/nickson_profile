@@ -1,0 +1,39 @@
+.page-wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  overflow: hidden;
+
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+
+    .page-main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .float-button-group {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .page-main {
+    flex-direction: row; // Keep horizontal layout
+    overflow-x: auto; // Allow horizontal scrolling if needed
+    
+    // Ensure content stays below Files when it appears
+    > *:nth-child(2) { // Targets the main content (second child)
+      flex: 1;
+    }
+  }
+}
