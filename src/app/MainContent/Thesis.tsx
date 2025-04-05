@@ -1,11 +1,11 @@
 import * as React from "react";
-import "../../styles/mainContent/about.scss";
+import "../../styles/mainContent/thesis.scss";
 import Avatar from "../../../public/avatar.png";
 import Image from "next/image";
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
-
-export const About: React.FC = () => {
+import { Button, Flex } from "antd";
+export const Thesis: React.FC = () => {
   const socialLinks = [
     {
       Icon: FaLinkedin,
@@ -48,32 +48,5 @@ export const About: React.FC = () => {
       innovative projects in these fields.
     </>
   );
-  return (
-    <div className="about">
-      <div className="description">
-        <div className="text">
-          <h1>Hao-Cheng (Nickson) Ni</h1>
-          <h2>Software Engineer</h2>
-          {description}
-        </div>
-        <div className="link">
-          {socialLinks.map(({ Icon, url, color }, index) => (
-            <a
-              key={index}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link"
-            >
-              <Icon size={30} color={color} />
-            </a>
-          ))}
-        </div>
-      </div>
-
-      <div className="avatar-container">
-        <Image src={Avatar} alt="Profile avatar" className="avatar-image" />
-      </div>
-    </div>
-  );
+  return <div className="thesis"></div>;
 };

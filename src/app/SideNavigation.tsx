@@ -1,36 +1,63 @@
 import * as React from "react";
 import "../styles/side_navigation.scss";
-import { IconButton } from "./IconButton";
-import FilesIcon from "../../public/file.svg";
-import MagnifierIcon from "../../public/magnifier.svg";
-import WebComponentsIcon from "../../public/extension.svg";
-import GitForkIcon from "../../public/git.svg";
-import AccountIcon from "../../public/profile.svg";
-import SettingOutlinedIcon from "../../public/setting.svg";
-
+import { LuFiles } from "react-icons/lu";
+import { SlMagnifier } from "react-icons/sl";
+import { IoGitBranchOutline } from "react-icons/io5";
+import { VscExtensions } from "react-icons/vsc";
+import { VscDebugAlt } from "react-icons/vsc";
+import { VscAccount } from "react-icons/vsc";
+import { VscSettingsGear } from "react-icons/vsc";
 type NaviProps = {
+  onClickIcon: (icon_name: string) => void;
   className?: string;
 };
 const navIcons = [
-  { component: FilesIcon, name: "file" },
-  { component: MagnifierIcon, name: "magnifier" },
-  { component: WebComponentsIcon, name: "web-components" },
-  { component: GitForkIcon, name: "git-fork" },
-  { component: AccountIcon, name: "account" },
-  { component: SettingOutlinedIcon, name: "setting-outlined" },
+  { component: <LuFiles size={32} />, name: "file" },
+  { component: <SlMagnifier size={32} />, name: "magnifier" },
+  { component: <VscExtensions size={32} />, name: "extensions" },
+  { component: <IoGitBranchOutline size={32} />, name: "git-fork" },
+  { component: <VscDebugAlt size={32} />, name: "debug" },
+  { component: <VscAccount size={32} />, name: "account" },
+  { component: <VscSettingsGear size={32} />, name: "setting-outlined" },
 ];
 
-export const SideNavigation: React.FC<NaviProps> = ({ className }) => {
+export const SideNavigation: React.FC<NaviProps> = ({
+  onClickIcon,
+  className,
+}) => {
+  const [activeIcon, setActivateIcon] = React.useState("file");
   return (
     <nav className={`side-navigation ${className || ""}`}>
       <div className="top-icons">
         {navIcons.slice(0, 4).map((icon, index) => (
-          <IconButton alt={icon.name} key={index} icon={icon.component} />
+          <button
+            key={index}
+            className={`icon-button ${
+              activeIcon === icon.name ? "active" : ""
+            }`}
+            onClick={() => {
+              onClickIcon(icon.name);
+              setActivateIcon(icon.name);
+            }}
+          >
+            {icon.component}
+          </button>
         ))}
       </div>
       <div className="bottom-icons">
         {navIcons.slice(4).map((icon, index) => (
-          <IconButton alt={icon.name} key={index + 4} icon={icon.component} />
+          <button
+            key={index}
+            className={`icon-button ${
+              activeIcon === icon.name ? "active" : ""
+            }`}
+            onClick={() => {
+              onClickIcon(icon.name);
+              setActivateIcon(icon.name);
+            }}
+          >
+            {icon.component}
+          </button>
         ))}
       </div>
     </nav>

@@ -1,41 +1,79 @@
 .side-navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  background-color: #27272a;
+  border: 1px solid #494949;
+  width: 82px;
+  height: 100vh;
+  box-sizing: border-box;
+
+  .top-icons,
+  .bottom-icons {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
-    background-color: #27272a;
-    border: 1px solid #494949;
-    width: 82px;
-    height: 100vh;
-    box-sizing: border-box;
-  
-    .top-icons,
-    .bottom-icons {
-      display: flex;
-      flex-direction: column;
-      gap: 2em;
-    }
-  
-    .bottom-icons {
-      margin-bottom: 3.25em;
-    }
+    gap: 2em;
+    width: 100%; // Ensure these divs take full width of .side-navigation
   }
-  @media (max-width: 768px) {
-    .side-navigation {
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0; // Leftmost position
-      height: 100%;
-      width: 100px; // Fixed width for mobile
-      z-index: 10; // Same z-index as Files
-      transition: transform 0.3s ease-in-out;
-  
-      &.visible {
-        display: flex;
-        transform: translateX(0);
+
+  .bottom-icons {
+    margin-bottom: 3.25em;
+  }
+
+  .icon-button {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; // Full width of parent (.top-icons or .bottom-icons)
+    height: 40px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    color: gray;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 20px;
+        background-color: #1890ff;
       }
     }
   }
+}
+
+@media (max-width: 768px) {
+  .side-navigation {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100px;
+    z-index: 10;
+    transition: transform 0.3s ease-in-out;
+
+    &.visible {
+      display: flex;
+      transform: translateX(0);
+    }
+  }
+}

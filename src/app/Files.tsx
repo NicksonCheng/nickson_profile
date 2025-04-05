@@ -3,15 +3,18 @@ import "../styles/files.scss";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FaPython } from "react-icons/fa";
 import { FaReact } from "react-icons/fa";
+import { FaFilePdf } from "react-icons/fa";
 import { FaJs } from "react-icons/fa";
 
 type FilesProps = {
   onFilenameChange: (filename: string) => void;
+  selectedFile: string;
   className?: string; // 添加 className 作為可選屬性
 };
 
 export const Files: React.FC<FilesProps> = ({
   onFilenameChange,
+  selectedFile,
   className,
 }) => {
   const file = [
@@ -24,6 +27,10 @@ export const Files: React.FC<FilesProps> = ({
       Icon: FaPython,
       text: "main.py",
     },
+    {
+      Icon: FaFilePdf,
+      text: "thesis.pdf",
+    },
   ];
 
   return (
@@ -32,7 +39,7 @@ export const Files: React.FC<FilesProps> = ({
       {file.map((item, index) => (
         <button
           key={index}
-          className="file-item"
+          className={`file-item ${selectedFile === item.text ? "active" : ""}`}
           onClick={() => {
             onFilenameChange(item.text); // Pass filename to parent
           }}

@@ -1,34 +1,43 @@
-import * as React from "react";
+import React from "react";
 import axios from "axios";
-import "../../styles/mainContent/main_content.scss";
-
-interface RepoOwner {
-  login: string;
-  avatar_url: string;
-}
+import { GoRepo, GoDotFill, GoStar } from "react-icons/go"; // Icons from react-icons
+import "../../styles/mainContent/projects.scss"; // We'll create this CSS file
 
 interface Repo {
   name: string;
   description: string;
-  html_url: string;
-  stargazers_count: number;
   language: string;
-  owner: RepoOwner;
+  stargazers_count: number;
+  visibility: string; // e.g., "public"
 }
 
 export const Projects: React.FC = () => {
   const [repos, setRepos] = React.useState<Repo[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
+  const [loading, setLoading] = React.useState(true);
+  const hasRun = React.useRef(false);
 
   React.useEffect(() => {
+    if (hasRun.current) return;
+    hasRun.current = true;
+
+    const pinned = [
+      "AIcup2024_RAG",
+      "nickson_profile",
+      "web_service",
+      "MovieBot",
+      "leecode",
+      "Sudoku",
+    ];
+
     axios
       .get<Repo[]>(
-        "https://api.github.com/users/NicksonCheng/repos?sort=pushed&per_page=6"
+        "https://api.github.com/users/NicksonCheng/repos?sort=pushed&per_page=40"
       )
       .then((response) => {
-        // Here we can filter repositories based on certain criteria (e.g., stars or recent activity)
-        // Since GitHub API does not return a 'pinned' field, we'll just use the first few repos
-        const pinnedRepos = response.data.slice(0, 6); // Example: Get the first 6 repos
+        const allRepos = response.data;
+        const pinnedRepos = allRepos.filter((repo) =>
+          pinned.includes(repo.name)
+        );
         console.log(pinnedRepos);
         setRepos(pinnedRepos);
         setLoading(false);
@@ -39,38 +48,51 @@ export const Projects: React.FC = () => {
       });
   }, []);
 
+  // Language colors (matching GitHub's style)
+  const languageColors: { [key: string]: string } = {
+    Python: "#3572A5",
+    Java: "#b07219",
+    "C++": "#f34b7d",
+    TypeScript: "#2b7489",
+    // Add more languages as needed
+  };
+
   return (
-    <div className="main-content">
-      <div className="content-section">
-        <h2 className="section-title">My Projects</h2>
+    <div className="projects">
+      <h1>Projects</h1>
+      <div className="project-container">
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <div className="projects-container">
-            {repos.map((repo) => (
-              <div key={repo.name} className="project-card">
-                <img
-                  src={repo.owner.avatar_url}
-                  alt={repo.owner.login}
-                  className="avatar"
-                />
-                <h3 className="project-title">{repo.name}</h3>
-                <p className="project-description">{repo.description}</p>
-                <div className="project-details">
-                  <span className="language">{repo.language}</span>
-                  <span className="stars">{repo.stargazers_count} Stars</span>
-                </div>
-                <a
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-link"
-                >
-                  View on GitHub
-                </a>
+          repos.map((repo, index) => (
+            <div key={index} className="repo-card">
+              <div className="repo-header">
+                <GoRepo className="repo-icon" />
+                <h3 className="repo-name">{repo.name}</h3>
+                <span className="repo-visibility">
+                  {repo.visibility || "Public"}
+                </span>
               </div>
-            ))}
-          </div>
+              <p className="repo-description">{repo.description || ""}</p>
+              <div className="repo-footer">
+                {repo.language && (
+                  <span className="repo-language">
+                    <GoDotFill
+                      className="language-dot"
+                      style={{
+                        color: languageColors[repo.language] || "#ccc",
+                      }}
+                    />
+                    {repo.language}
+                  </span>
+                )}
+                <span className="repo-stars">
+                  <GoStar className="star-icon" />
+                  {repo.stargazers_count || 0}
+                </span>
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>

@@ -3,6 +3,7 @@ import * as React from "react";
 import { About } from "./MainContent/About";
 import { Experience } from "./MainContent/Experience";
 import { Projects } from "./MainContent/Projects";
+import { Thesis } from "./MainContent/Thesis";
 import { TopMenuBar } from "./TopMenuBar";
 import { Files } from "./Files";
 import { SideNavigation } from "./SideNavigation";
@@ -19,6 +20,7 @@ export default function Home() {
     "README.md": <About />,
     "experience.tsx": <Experience />,
     "main.py": <Projects />,
+    "thesis.pdf": <Thesis />,
   };
 
   const [page_name, setPagename] =
@@ -26,22 +28,32 @@ export default function Home() {
   const [showFiles, setShowFiles] = React.useState(false);
   const [showTools, setShowTools] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
-
   React.useEffect(() => {
     const checkMobile = () => window.innerWidth <= 768;
-    setIsMobile(checkMobile());
+    setIsMobile(checkMobile);
+    setShowFiles(!checkMobile());
     const handleResize = () => setIsMobile(checkMobile());
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleFilenameChange = (filename: string) => {
-    console.log(filename);
     if (filename in mainpage) {
       setPagename(filename as keyof typeof mainpage);
     }
   };
-
+  const handleIconChange = (icon_name: string) => {
+    switch (icon_name) {
+      case "file":
+        setShowFiles((prev) => !prev);
+        break;
+      case "account":
+        setPagename("README.md" as keyof typeof mainpage);
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <div className="page-wrapper">
       <div className="page-content">
@@ -50,18 +62,20 @@ export default function Home() {
         <div className="page-main">
           {(!isMobile || (isMobile && showTools)) && (
             <SideNavigation
+              onClickIcon={handleIconChange}
               className={`side-navigation ${
                 isMobile && showTools ? "visible" : ""
               }`}
             />
           )}
-          {(!isMobile || (isMobile && showFiles)) && (
+          {showFiles && (
             <Files
               onFilenameChange={handleFilenameChange}
+              selectedFile={page_name}
               className={`files ${isMobile && showFiles ? "visible" : ""}`}
             />
           )}
-          {mainpage[page_name]}
+          <div className="content-section">{mainpage[page_name]}</div>
         </div>
       </div>
       {isMobile && (

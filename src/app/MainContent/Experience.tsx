@@ -1,9 +1,5 @@
 import * as React from "react";
-import "../../styles/mainContent/main_content.scss";
+import "../../styles/mainContent/experience.scss";
 export const Experience: React.FC = () => {
-  return (
-    <div className="main-content">
-      <div className="content-section"></div>
-    </div>
-  );
+  return <div className="experience"></div>;
 };

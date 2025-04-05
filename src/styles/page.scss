@@ -16,7 +16,20 @@
       flex: 1;
       overflow: hidden;
     }
-
+    // Second div (main content section)
+    .content-section {
+      display: flex;
+      flex: 1;
+      background-color: #27272a; // zinc-800
+      border: 1px solid #494949;
+      display: flex;
+      justify-content: space-between; // Align child (avatar-container) to the right
+      align-items: flex-start; // Align child (avatar-container) to the top
+      padding: 80px; // Optional: Adds some padding for spacing
+      overflow-y: scroll; /* Vertical scrolling only */
+      overflow-x: scroll; /* Hide horizontal */
+      scrollbar-width: none;
+    }
     .float-button-group {
       position: fixed;
       bottom: 24px;
@@ -26,16 +39,14 @@
 }
 
 @media (max-width: 768px) {
-  .page-main {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* mainpage content stays in place */
-  .page-main > *:last-child {
-    position: relative;
-    z-index: 1;
-    width: 100%;
+  .page-content {
+    .page-main {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      .content-section {
+        padding: 1.5em; // Optional: Remove padding on mobile
+      }
+    }
   }
 }
