@@ -4,7 +4,7 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import { FaPython } from "react-icons/fa";
 import { FaReact } from "react-icons/fa";
 import { FaFilePdf } from "react-icons/fa";
-import { FaJs } from "react-icons/fa";
+// import { FaJs } from "react-icons/fa";
 
 type FilesProps = {
   onFilenameChange: (filename: string) => void;
