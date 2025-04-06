@@ -1,0 +1,56 @@
+.tab-container {
+  display: flex;
+  flex-wrap: nowrap; // Keep tabs in a single row
+  overflow-x: auto; // Allow horizontal scrolling if too many tabs
+  background-color: #27272a;
+  border-bottom: 1px solid #2d2d2d;
+  width: 100%;
+
+  .file-tab {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    color: #ffffff;
+    cursor: pointer;
+    background-color: #2d2d2d; // Slightly lighter than container
+    border-right: 1px solid #1e1e1e;
+    min-width: 120px; // Minimum width for readability
+
+    &.active {
+      background-color: #1e1e1e; // Match container when active
+      color: #ffffff;
+      font-weight: bold; // Optional: highlight active tab
+    }
+
+    &:hover {
+      background-color: #3d3d3d; // Hover effect
+    }
+
+    .file-name {
+      flex-grow: 1;
+      padding: 2px 5px;
+      font-family: monospace;
+      white-space: nowrap; // Prevent wrapping
+    }
+
+    .close-button {
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 0 5px;
+      height: 20px;
+      line-height: 20px;
+      border-radius: 50%;
+
+      &:hover {
+        background-color: #ffffff20;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

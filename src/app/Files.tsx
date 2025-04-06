@@ -25,7 +25,7 @@ export const Files: React.FC<FilesProps> = ({
     },
     {
       Icon: FaPython,
-      text: "main.py",
+      text: "projects.py",
     },
     {
       Icon: FaFilePdf,

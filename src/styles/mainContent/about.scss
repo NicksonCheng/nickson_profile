@@ -4,6 +4,7 @@
   flex-direction: row;
   justify-content: space-between;
   .avatar-container {
+    display: flex;
     border-radius: 50%;
     width: 20em;
     height: 20em;
@@ -21,10 +22,12 @@
     flex-direction: column;
     align-content: space-between;
     justify-content: space-between;
-    width: 30em;
+    max-width: calc(
+      100% - 22em
+    ); // Ensure it doesn't overlap avatar (20em + 2em margin)
     height: auto; /* Automatically adjust height based on content */
     word-wrap: break-word;
-
+    line-height: 2.5;
     h1 {
       font-size: 40px;
     }
@@ -43,9 +46,14 @@
 
 @media (max-width: 768px) {
   .about {
+    display: flex;
+    flex: 1;
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    padding-top: 2.5em;
     .avatar-container {
       width: 10em;
       height: 10em;
@@ -54,15 +62,16 @@
       display: flex;
       flex: 1;
       flex-direction: column;
-      align-content: space-between;
       justify-content: space-between;
       height: auto; /* Automatically adjust height based on content */
-      word-wrap: break-word;
+      word-wrap: break-word; /* Ensures text wraps within the container */
+      width: 100%; /* Ensures it takes full width but respects padding/margins */
+      padding: 1em;
       h1 {
-        font-size: 2.5em;
+        font-size: 2em;
       }
       h2 {
-        font-size: 30px;
+        font-size: 1.5em;
       }
       .link {
         display: flex;

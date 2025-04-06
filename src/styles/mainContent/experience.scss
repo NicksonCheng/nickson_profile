@@ -1,8 +1,147 @@
-
-
-.experience{
+.experience {
   display: flex;
-  flex: 1;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 2em;
+  padding: 2em;
+  color: #ffffff;
+  height: 100%;
+  box-sizing: border-box;
+
+  .experience-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #333336;
+    border-radius: 12px;
+    padding: 1.5em;
+    gap: 2em;
+
+    .left-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      .team-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+        color: #f5a623;
+      }
+
+      .position {
+        font-size: 18px;
+        color: #a1a1aa;
+        margin: 0;
+      }
+
+      .progress-list {
+        list-style-type: decimal;
+        padding-left: 1.5em;
+        margin: 0;
+        line-height: 1.8;
+
+        li {
+          margin-bottom: 0.5em;
+        }
+      }
+    }
+
+    .right-section {
+      flex-shrink: 0;
+      width: 25em;
+
+      .image-wrapper {
+        position: relative;
+        display: inline-block;
+
+        .experience-image {
+          width: 100%;
+          height: auto;
+          max-height: 18em;
+          object-fit: contain;
+          border-radius: 8px;
+          border: 2px solid #f5a623;
+          background-color: #fff;
+          transition: transform 0.1s ease; // Smooth transition for shake
+        }
+
+        // Shake animation on hover and click
+        &:hover .experience-image,
+        &:active .experience-image {
+          animation: shake 0.5s;
+          cursor: pointer;
+        }
+
+        // Tooltip styling
+        .image-tooltip {
+          visibility: hidden;
+          width: 120px;
+          background-color: #f5a623;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+          position: absolute;
+          z-index: 1;
+          bottom: 105%; // Position above the image
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 12px;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        &:hover .image-tooltip {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  // Shake animation keyframes
+  @keyframes shake {
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(-5px, 0);
+    }
+    50% {
+      transform: translate(5px, 0);
+    }
+    75% {
+      transform: translate(-5px, 0);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
 }
 
+@media (max-width: 768px) {
+  .experience {
+    padding: 1em;
+
+    .experience-block {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5em;
+
+      .left-section {
+        width: 100%;
+      }
+
+      .right-section {
+        width: 100%;
+        max-width: 25em;
+
+        .experience-image {
+          max-height: 15em;
+        }
+      }
+    }
+  }
+}

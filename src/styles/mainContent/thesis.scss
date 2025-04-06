@@ -1,8 +1,140 @@
-
-
-.thesis{
+.thesis {
   display: flex;
-  flex: 1;
-  flex-direction: row;
-}
+  flex-direction: column;
+  padding: 2em;
+  color: #ffffff;
+  height: 100%;
+  box-sizing: border-box;
 
+  h1 {
+    font-size: 3em;
+    margin-bottom: 1em;
+    color: #f5a623; // Orange accent to match theme
+  }
+
+  .thesis-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2em;
+
+    .left-section {
+      flex: 1;
+      background-color: #333336; // Matches Experience block
+      border-radius: 12px;
+      padding: 1.5em;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+        color: #f5a623; // Orange accent
+      }
+
+      p {
+        font-size: 16px;
+        color: #c9d1d9; // Light text color
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+
+    .right-section {
+      flex-shrink: 0;
+      width: 25em;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+
+      .image-wrapper {
+        position: relative;
+        display: inline-block;
+
+        .thesis-image {
+          width: 100%;
+          height: auto;
+          max-height: 18em;
+          object-fit: contain;
+          border-radius: 8px;
+          border: 2px solid #f5a623; // Orange border
+          background-color: #fff;
+          transition: transform 0.1s ease;
+        }
+
+        &:hover .thesis-image,
+        &:active .thesis-image {
+          animation: shake 0.5s;
+          cursor: pointer;
+        }
+
+        .image-tooltip {
+          visibility: hidden;
+          width: 150px;
+          background-color: #f5a623;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+          position: absolute;
+          z-index: 1;
+          bottom: 105%;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 12px;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        &:hover .image-tooltip {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @keyframes shake {
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(-5px, 0);
+    }
+    50% {
+      transform: translate(5px, 0);
+    }
+    75% {
+      transform: translate(-5px, 0);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1em;
+
+    .thesis-content {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5em;
+
+      .left-section {
+        width: 100%;
+      }
+
+      .right-section {
+        width: 100%;
+        max-width: 25em;
+
+        .thesis-image {
+          max-height: 15em;
+        }
+      }
+    }
+  }
+}

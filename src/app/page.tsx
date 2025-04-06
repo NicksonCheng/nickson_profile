@@ -8,26 +8,27 @@ import { TopMenuBar } from "./TopMenuBar";
 import { Files } from "./Files";
 import { SideNavigation } from "./SideNavigation";
 import { FloatButton } from "antd";
-
-// floating button icons
-import { CustomerServiceOutlined } from "@ant-design/icons";
-import { QuestionCircleOutlined } from "@ant-design/icons";
-
+import { Tab } from "./MainContent/Tab"; // Assuming Tab is in MainContent folder
+import {
+  CustomerServiceOutlined,
+  QuestionCircleOutlined,
+} from "@ant-design/icons";
 import "../styles/page.scss";
 
 export default function Home() {
   const mainpage = {
     "README.md": <About />,
     "experience.tsx": <Experience />,
-    "main.py": <Projects />,
+    "projects.py": <Projects />,
     "thesis.pdf": <Thesis />,
   };
 
-  const [page_name, setPagename] =
-    React.useState<keyof typeof mainpage>("README.md");
+  const [openFiles, setOpenFiles] = React.useState<string[]>(["README.md"]); // Track open files
+  const [activeFile, setActiveFile] = React.useState<string>("README.md"); // Current active file
   const [showFiles, setShowFiles] = React.useState(false);
   const [showTools, setShowTools] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
+
   React.useEffect(() => {
     const checkMobile = () => window.innerWidth <= 768;
     setIsMobile(checkMobile);
@@ -38,27 +39,40 @@ export default function Home() {
   }, []);
 
   const handleFilenameChange = (filename: string) => {
-    if (filename in mainpage) {
-      setPagename(filename as keyof typeof mainpage);
+    if (filename in mainpage && !openFiles.includes(filename)) {
+      setOpenFiles([...openFiles, filename]); // Add new file to open tabs
     }
+    setActiveFile(filename); // Switch to clicked file
   };
+
   const handleIconChange = (icon_name: string) => {
     switch (icon_name) {
       case "file":
         setShowFiles((prev) => !prev);
         break;
       case "account":
-        setPagename("README.md" as keyof typeof mainpage);
+        setActiveFile("README.md");
+        if (!openFiles.includes("README.md")) {
+          setOpenFiles([...openFiles, "README.md"]);
+        }
         break;
       default:
         break;
     }
   };
+
+  const handleCloseFile = (filename: string) => {
+    const newOpenFiles = openFiles.filter((file) => file !== filename);
+    setOpenFiles(newOpenFiles);
+    if (activeFile === filename) {
+      setActiveFile(newOpenFiles.length > 0 ? newOpenFiles[0] : "README.md"); // Switch to first open file or default
+    }
+  };
+
   return (
     <div className="page-wrapper">
       <div className="page-content">
         <TopMenuBar />
-
         <div className="page-main">
           {(!isMobile || (isMobile && showTools)) && (
             <SideNavigation
@@ -71,11 +85,21 @@ export default function Home() {
           {showFiles && (
             <Files
               onFilenameChange={handleFilenameChange}
-              selectedFile={page_name}
+              selectedFile={activeFile}
               className={`files ${isMobile && showFiles ? "visible" : ""}`}
             />
           )}
-          <div className="content-section">{mainpage[page_name]}</div>
+          <div className="content-wrapper">
+            <Tab
+              openFiles={openFiles}
+              activeFile={activeFile}
+              onSelectFile={setActiveFile}
+              onCloseFile={handleCloseFile}
+            />
+            <div className="content-section">
+              {mainpage[activeFile as keyof typeof mainpage]}
+            </div>
+          </div>
         </div>
       </div>
       {isMobile && (
@@ -88,14 +112,14 @@ export default function Home() {
           <FloatButton
             icon={<QuestionCircleOutlined />}
             onClick={() => {
-              setShowTools((prev) => !prev); // Toggle showTools
-              setShowFiles(false); // Close showFiles when tools open
+              setShowTools((prev) => !prev);
+              setShowFiles(false);
             }}
           />
           <FloatButton
             onClick={() => {
-              setShowFiles((prev) => !prev); // Toggle showFiles
-              setShowTools(false); // Close showTools when files open
+              setShowFiles((prev) => !prev);
+              setShowTools(false);
             }}
           />
         </FloatButton.Group>

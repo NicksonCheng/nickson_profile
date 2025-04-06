@@ -1,6 +1,5 @@
 import * as React from "react";
 import "../../styles/mainContent/about.scss";
-import Avatar from "../../../public/avatar.png";
 import Image from "next/image";
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
@@ -72,7 +71,13 @@ export const About: React.FC = () => {
       </div>
 
       <div className="avatar-container">
-        <Image src={Avatar} alt="Profile avatar" className="avatar-image" />
+        <Image
+          width={500}
+          height={500}
+          src="/images/avatar.png"
+          alt="Profile avatar"
+          className="avatar-image"
+        />
       </div>
     </div>
   );
