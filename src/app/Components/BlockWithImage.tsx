@@ -1,7 +1,6 @@
-// BlockWithImage.tsx
 import * as React from "react";
 import Image from "next/image";
-import "@/styles/components/blockWithImage.scss"; // Updated import
+import "@/styles/components/blockWithImage.scss";
 
 interface BlockWithImageProps {
   leftContent: {
@@ -24,9 +23,19 @@ export const BlockWithImage: React.FC<BlockWithImageProps> = ({
   images,
   className = "",
 }) => {
+  const leftRef = React.useRef<HTMLDivElement>(null);
+  const rightRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (leftRef.current && rightRef.current) {
+      const rightHeight = rightRef.current.offsetHeight;
+      leftRef.current.style.maxHeight = `${rightHeight}px`;
+    }
+  }, [images]); // Re-run when images change
+
   return (
     <div className={`block-with-image ${className}`}>
-      <div className="left-section">
+      <div ref={leftRef} className="left-section">
         <h2 className="title">{leftContent.title}</h2>
         {leftContent.subtitle && (
           <h3 className="subtitle">{leftContent.subtitle}</h3>
@@ -42,7 +51,7 @@ export const BlockWithImage: React.FC<BlockWithImageProps> = ({
           <p className="description">{leftContent.description}</p>
         )}
       </div>
-      <div className="right-section">
+      <div ref={rightRef} className="right-section">
         {images.map((image, index) => (
           <div key={index} className="image-wrapper">
             <Image

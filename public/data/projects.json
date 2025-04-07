@@ -19,18 +19,44 @@
     },
     {
       "leftContent": {
-        "title": "Project 2",
-        "subtitle": "Lead Engineer",
+        "title": "Application of RAG and LLM in Financial Q&A",
+        "subtitle": "LLM/RAG/Deep Learning/Pytorch",
         "items": [
-          "Designed system architecture",
-          "Integrated APIs",
-          "Led a small team"
+          "Integrated LLM and Retrieval-Augmented Generation (RAG) techniques to develop an effective Financial Q&A model",
+          "Fine-tuned the Multilingual retriever and BAAI reranker within a RAG framework, optimizing the retrieval process to provide the most relevant answers from the question documents",
+          "Achieved 89.37% accuracy on a contest dataset of 900 questions, ranking 42nd out of 487 participants, placing in the top 8%"
         ]
       },
       "images": [
         {
-          "src": "/images/project2.png",
-          "alt": "Project 2 Illustration"
+          "src": "/images/RAG_architecture.png",
+          "alt": "RAG Illustration"
+        },
+        {
+          "src": "/images/RAG_score.png",
+          "alt": "RAG score"
+        }
+      ],
+      "status": "finished"
+    },
+    {
+      "leftContent": {
+        "title": "R-Tree Based Lost Pet Locator",
+        "subtitle": "R-Tree/React Native/Node.js/Expo",
+        "items": [
+          "Implemented the R-Tree algorithm to optimize the search and management of geospatial data for tracking lost pet",
+          "Developed full-stack application using React Native and Node.js, integrating R-Tree for efficient and seamless functionality",
+          "Used Expo to deploy universal native apps for Android and iOS, streamlining both development and deployment"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/RAG_architecture.png",
+          "alt": "RAG Illustration"
+        },
+        {
+          "src": "/images/RAG_score.png",
+          "alt": "RAG score"
         }
       ],
       "status": "finished"

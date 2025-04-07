@@ -1,4 +1,3 @@
-// styles/components/blockWithImage.scss
 .block-with-image {
   display: flex;
   flex-direction: row;
@@ -15,6 +14,14 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
+    max-height: 100%; // Ensure it respects the parent's height constraint
+    overflow-y: auto; // Enable vertical scrolling for overflow
+    -ms-overflow-style: none; // Hide scrollbar in IE and Edge
+    scrollbar-width: none; // Hide scrollbar in Firefox
+
+    &::-webkit-scrollbar {
+      display: none; // Hide scrollbar in Chrome, Safari, and Opera
+    }
 
     .title {
       font-size: 24px;
@@ -126,6 +133,7 @@
 
     .left-section {
       width: 100%;
+      max-height: none; // Reset for mobile view
     }
 
     .right-section {

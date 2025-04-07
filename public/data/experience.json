@@ -22,9 +22,10 @@
         "title": "KID Lab",
         "subtitle": "Machine Learning/Deep Learning Engineer",
         "items": [
-          "Developed RESTful APIs with Node.js and Express",
-          "Integrated MongoDB for data persistence",
-          "Implemented authentication with JWT"
+          "Participated in the AIcup 2024 Fall competition on Application of RAG and LLM in Financial Q&A; achieved 89.37% accuracy on a dataset of 900 questions, placing in the top 8% with a distinguished performance.",
+          "Developed a online midterm judging system using PHP, JavaScript, and SQL, enabling automated assessments and efficient management of exam submissions",
+          "Managed servers maintenance for the lab, including the NAS file system, Apache deployment for the lab website, and distribution of training resources on Linux"
+          
         ]
       },
       "images": [
