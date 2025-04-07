@@ -8,10 +8,12 @@ import { VscDebugAlt } from "react-icons/vsc";
 import { VscAccount } from "react-icons/vsc";
 import { VscSettingsGear } from "react-icons/vsc";
 import { Alert } from "./Components/Alert";
+
 type NaviProps = {
   onClickIcon: (icon_name: string) => void;
   className?: string;
 };
+
 const navIcons = [
   { component: <LuFiles size={32} />, name: "file" },
   { component: <SlMagnifier size={32} />, name: "magnifier" },
@@ -27,15 +29,29 @@ export const SideNavigation: React.FC<NaviProps> = ({
   className,
 }) => {
   const [isAlertOpen, setIsAlertOpen] = React.useState(false);
+  const [isChatboxOpen, setIsChatboxOpen] = React.useState(false); // State for chatbox visibility
+  const [activeIcon, setActivateIcon] = React.useState("file");
+
   const usefulIcon = ["file", "account", "setting-outlined"];
+
   const handleFeatureClick = (icon_name: string) => {
-    if (!usefulIcon.includes(icon_name)) setIsAlertOpen(true);
-    else {
+    if (!usefulIcon.includes(icon_name)) {
+      setIsAlertOpen(true); // Show alert for non-useful icons
+    } else if (icon_name === "setting-outlined") {
+      setIsChatboxOpen(true); // Show chatbox when "setting-outlined" is clicked
+      setActivateIcon(icon_name);
+    } else {
       onClickIcon(icon_name);
       setActivateIcon(icon_name);
+      setIsChatboxOpen(false); // Close chatbox if another useful icon is clicked
     }
   };
-  const [activeIcon, setActivateIcon] = React.useState("file");
+
+  const handleChatboxOptionClick = (option: string) => {
+    console.log(`Selected option: ${option}`); // For now, log the selected option
+    setIsChatboxOpen(false); // Close chatbox after selection
+  };
+
   return (
     <div>
       <nav className={`side-navigation ${className || ""}`}>
@@ -70,6 +86,27 @@ export const SideNavigation: React.FC<NaviProps> = ({
           ))}
         </div>
       </nav>
+
+      {/* Chatbox for settings */}
+      {isChatboxOpen && (
+        <div className="chatbox">
+          <div className="chatbox-content">
+            <button
+              className="chatbox-option"
+              onClick={() => handleChatboxOptionClick("theme")}
+            >
+              Theme
+            </button>
+            <button
+              className="chatbox-option"
+              onClick={() => handleChatboxOptionClick("music")}
+            >
+              Music
+            </button>
+          </div>
+        </div>
+      )}
+
       <Alert isOpen={isAlertOpen} onClose={() => setIsAlertOpen(false)} />
     </div>
   );

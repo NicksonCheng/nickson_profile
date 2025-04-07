@@ -20,10 +20,11 @@ export const Alert: React.FC<AlertProps> = ({ isOpen, onClose }) => {
               src="/images/capybara_engineer.gif"
               alt="Capybara Engineer Coding"
               className="capybara-gif"
+              unoptimized
             />
           </div>
           <div className="message-wrapper">
-            <h2>Oops! Under Construction</h2>
+            <h2>Oops! Under Development</h2>
             <p>
               This function is still in development. Our cute capybara engineer
               is coding hard to get it ready!
