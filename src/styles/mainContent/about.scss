@@ -67,6 +67,7 @@
       word-wrap: break-word; /* Ensures text wraps within the container */
       width: 100%; /* Ensures it takes full width but respects padding/margins */
       padding: 1em;
+      max-width: calc(100% - 1em);
       h1 {
         font-size: 2em;
       }

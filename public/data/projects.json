@@ -1,0 +1,38 @@
+[
+    {
+      "leftContent": {
+        "title": "Project 1",
+        "subtitle": "Developer",
+        "items": [
+          "Built a cool feature",
+          "Optimized performance",
+          "Added user-friendly UI"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/project1.png",
+          "alt": "Project 1 Illustration"
+        }
+      ],
+      "status": "ongoing"
+    },
+    {
+      "leftContent": {
+        "title": "Project 2",
+        "subtitle": "Lead Engineer",
+        "items": [
+          "Designed system architecture",
+          "Integrated APIs",
+          "Led a small team"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/project2.png",
+          "alt": "Project 2 Illustration"
+        }
+      ],
+      "status": "finished"
+    }
+  ]

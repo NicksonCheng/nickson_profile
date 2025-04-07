@@ -13,7 +13,7 @@ import {
   CustomerServiceOutlined,
   QuestionCircleOutlined,
 } from "@ant-design/icons";
-import "../styles/page.scss";
+import "@/styles/page.scss";
 
 export default function Home() {
   const mainpage = {
@@ -39,6 +39,10 @@ export default function Home() {
   }, []);
 
   const handleFilenameChange = (filename: string) => {
+    if (filename === "none") {
+      setShowFiles(false);
+      return;
+    }
     if (filename in mainpage && !openFiles.includes(filename)) {
       setOpenFiles([...openFiles, filename]); // Add new file to open tabs
     }
@@ -86,6 +90,7 @@ export default function Home() {
             <Files
               onFilenameChange={handleFilenameChange}
               selectedFile={activeFile}
+              isMobile={isMobile}
               className={`files ${isMobile && showFiles ? "visible" : ""}`}
             />
           )}

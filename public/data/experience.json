@@ -1,0 +1,38 @@
+[
+    {
+      "leftContent": {
+        "title": "AINIMAL",
+        "subtitle": "Software Engineer",
+        "items": [
+          "Spearheaded the migration from Vue.js and Cordova to React Native, significantly improving user experience and optimizing performance for a large-scale online dating app with 10K+ active users on Android and iOS",
+          "Improved code quality and maintainability by implementing ESLint and Prettier, and refactoring JavaScript code to TypeScript for enhanced type safety and scalability.",
+          "Developed and maintained backend APIs, including WebSocket environments, ensuring seamless real-time communication and improving overall app performance"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/ainimal.png",
+          "alt": "AINIMAL Project Illustration",
+          "tooltip": "Click to visit website"
+        }
+      ]
+    },
+    {
+      "leftContent": {
+        "title": "KID Lab",
+        "subtitle": "Machine Learning/Deep Learning Engineer",
+        "items": [
+          "Developed RESTful APIs with Node.js and Express",
+          "Integrated MongoDB for data persistence",
+          "Implemented authentication with JWT"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/kidlab.png",
+          "alt": "Team Beta System Design",
+          "tooltip": "Click to visit website"
+        }
+      ]
+    }
+  ]

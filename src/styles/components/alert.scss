@@ -1,0 +1,82 @@
+.alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .alert-modal {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    .alert-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .character-wrapper {
+        position: relative;
+        width: 100%;
+        height: 200px; // Matches the GIF height
+        background: #f5e9d8;
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .capybara-gif {
+          width: 300px; // Matches the GIF width
+          height: 200px; // Matches the GIF height
+          object-fit: contain; // Ensures the GIF scales properly without distortion
+        }
+      }
+
+      .message-wrapper {
+        margin-top: 20px;
+
+        h2 {
+          font-size: 24px;
+          color: #333;
+        }
+
+        p {
+          font-size: 16px;
+          color: #666;
+          margin: 10px 0;
+        }
+
+        .close-button {
+          padding: 10px 20px;
+          background: #f4a261;
+          border: none;
+          border-radius: 5px;
+          color: #fff;
+          font-size: 16px;
+          cursor: pointer;
+
+          &:hover {
+            background: #e68a00;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .alert-overlay {
+    .alert-modal {
+      width: 80%;
+    }
+  }
+}

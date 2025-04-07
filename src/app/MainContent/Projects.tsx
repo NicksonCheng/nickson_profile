@@ -2,9 +2,9 @@ import React from "react";
 import axios from "axios";
 import { GoRepo, GoDotFill, GoStar } from "react-icons/go";
 import { BsChevronDoubleDown } from "react-icons/bs";
-import Image from "next/image";
-import Link from "next/link"; // For repo URLs
-import "../../styles/mainContent/projects.scss";
+import Link from "next/link";
+import { BlockWithImage } from "../Components/BlockWithImage";
+import "@/styles/mainContent/projects.scss";
 
 interface Repo {
   name: string;
@@ -14,17 +14,22 @@ interface Repo {
   visibility: string;
 }
 
-interface ExperienceItem {
-  teamName: string;
-  position: string;
-  progress: string[];
-  imageSrc: string;
-  imageAlt: string;
-  status: "ongoing" | "finished"; // Add status for divider
+interface ProjectData {
+  leftContent: {
+    title: string;
+    subtitle: string;
+    items: string[];
+  };
+  images: {
+    src: string;
+    alt: string;
+  }[];
+  status: "ongoing" | "finished";
 }
 
 export const Projects: React.FC = () => {
   const [repos, setRepos] = React.useState<Repo[]>([]);
+  const [projects, setProjects] = React.useState<ProjectData[]>([]);
   const [loading, setLoading] = React.useState(true);
   const hasRun = React.useRef(false);
 
@@ -41,21 +46,23 @@ export const Projects: React.FC = () => {
       "Sudoku",
     ];
 
-    axios
-      .get<Repo[]>(
+    Promise.all([
+      axios.get<Repo[]>(
         "https://api.github.com/users/NicksonCheng/repos?sort=pushed&per_page=40"
-      )
-      .then((response) => {
-        const allRepos = response.data;
+      ),
+      fetch("/data/projects.json").then((response) => response.json()),
+    ])
+      .then(([repoResponse, projectsData]) => {
+        const allRepos = repoResponse.data;
         const pinnedRepos = allRepos.filter((repo) =>
           pinned.includes(repo.name)
         );
-        console.log(pinnedRepos);
         setRepos(pinnedRepos);
+        setProjects(projectsData as ProjectData[]);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching repos:", error);
+        console.error("Error fetching data:", error);
         setLoading(false);
       });
   }, []);
@@ -67,34 +74,6 @@ export const Projects: React.FC = () => {
     TypeScript: "#2b7489",
   };
 
-  const exampleProjects: ExperienceItem[] = [
-    {
-      teamName: "Project 1",
-      position: "Developer",
-      progress: [
-        "Built a cool feature",
-        "Optimized performance",
-        "Added user-friendly UI",
-      ],
-      imageSrc: "/images/project1.png",
-      imageAlt: "Project 1 Illustration",
-      status: "ongoing",
-    },
-    {
-      teamName: "Project 2",
-      position: "Lead Engineer",
-      progress: [
-        "Designed system architecture",
-        "Integrated APIs",
-        "Led a small team",
-      ],
-      imageSrc: "/images/project2.png",
-      imageAlt: "Project 2 Illustration",
-      status: "finished",
-    },
-  ];
-
-  // Add URLs to pinned repos (example.com placeholders)
   const repoUrls: { [key: string]: string } = {
     AIcup2024_RAG: "https://example.com/AIcup2024_RAG",
     nickson_profile: "https://example.com/nickson_profile",
@@ -104,44 +83,22 @@ export const Projects: React.FC = () => {
     Sudoku: "https://example.com/Sudoku",
   };
 
-  const ongoingProjects = exampleProjects.filter((p) => p.status === "ongoing");
-  const finishedProjects = exampleProjects.filter(
-    (p) => p.status === "finished"
-  );
+  const ongoingProjects = projects.filter((p) => p.status === "ongoing");
+  const finishedProjects = projects.filter((p) => p.status === "finished");
 
   return (
     <div className="projects">
       <h1>Projects</h1>
-      {/* Experience-style projects with Ongoing/Finished divider */}
       <div className="experience-projects">
         {ongoingProjects.length > 0 && (
           <>
             <h2 className="divider">Ongoing Projects</h2>
             {ongoingProjects.map((project, index) => (
-              <div key={index} className="experience-block">
-                <div className="left-section">
-                  <h2 className="team-name">{project.teamName}</h2>
-                  <h3 className="position">{project.position}</h3>
-                  <ul className="progress-list">
-                    {project.progress.map((item, idx) => (
-                      <li key={idx}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="right-section">
-                  <div className="image-wrapper">
-                    <Image
-                      width={400}
-                      height={288}
-                      src={project.imageSrc}
-                      alt={project.imageAlt}
-                      className="experience-image"
-                      quality={75}
-                    />
-                    <span className="image-tooltip">Project Image</span>
-                  </div>
-                </div>
-              </div>
+              <BlockWithImage
+                key={index}
+                leftContent={project.leftContent}
+                images={project.images}
+              />
             ))}
           </>
         )}
@@ -149,35 +106,15 @@ export const Projects: React.FC = () => {
           <>
             <h2 className="divider">Finished Projects</h2>
             {finishedProjects.map((project, index) => (
-              <div key={index} className="experience-block">
-                <div className="left-section">
-                  <h2 className="team-name">{project.teamName}</h2>
-                  <h3 className="position">{project.position}</h3>
-                  <ul className="progress-list">
-                    {project.progress.map((item, idx) => (
-                      <li key={idx}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="right-section">
-                  <div className="image-wrapper">
-                    <Image
-                      width={400}
-                      height={288}
-                      src={project.imageSrc}
-                      alt={project.imageAlt}
-                      className="experience-image"
-                      quality={75}
-                    />
-                    <span className="image-tooltip">Project Image</span>
-                  </div>
-                </div>
-              </div>
+              <BlockWithImage
+                key={index}
+                leftContent={project.leftContent}
+                images={project.images}
+              />
             ))}
           </>
         )}
       </div>
-      {/* GitHub Projects Divider */}
       <h2 className="divider">GitHub Projects</h2>
       <div className="project-container">
         {loading ? (

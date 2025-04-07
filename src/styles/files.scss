@@ -10,7 +10,11 @@
   width: 200px;
   height: 100vh;
   box-sizing: border-box;
-
+  .close {
+    text-align: right;
+    width: 95%;
+    font-size: 1.5em;
+  }
   .file-item {
     display: flex;
     flex-direction: row;

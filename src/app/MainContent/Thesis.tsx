@@ -1,52 +1,37 @@
 import * as React from "react";
-import Image from "next/image";
-import "../../styles/mainContent/thesis.scss";
+import { BlockWithImage } from "../Components/BlockWithImage";
+import "@/styles/mainContent/thesis.scss";
+
+interface ThesisData {
+  leftContent: {
+    title: string;
+    description: string;
+  };
+  images: {
+    src: string;
+    alt: string;
+  }[];
+}
 
 export const Thesis: React.FC = () => {
-  const thesisData = {
-    title: "My Thesis",
-    introduction:
-      "This thesis explores innovative approaches to [your topic]. It focuses on designing and implementing a system that [brief goal]. Key contributions include [key point 1], [key point 2], and [key point 3].",
-    images: [
-      {
-        src: "/images/introduction.png",
-        alt: "Thesis Introduction Diagram",
-      },
-      {
-        src: "/images/architecture.png",
-        alt: "System Architecture Diagram",
-      },
-      {
-        src: "/images/architecture2.png",
-        alt: "Alternative Architecture Diagram",
-      },
-    ],
-  };
+  const [thesisData, setThesisData] = React.useState<ThesisData | null>(null);
+
+  React.useEffect(() => {
+    fetch("/data/thesis.json")
+      .then((response) => response.json())
+      .then((data: ThesisData) => setThesisData(data))
+      .catch((error) => console.error("Error fetching thesis data:", error));
+  }, []);
+
+  if (!thesisData) return <div>Loading...</div>;
 
   return (
     <div className="thesis">
-      <h1>{thesisData.title}</h1>
-      <div className="thesis-content">
-        <div className="left-section">
-          <h2>Introduction</h2>
-          <p>{thesisData.introduction}</p>
-        </div>
-        <div className="right-section">
-          {thesisData.images.map((image, index) => (
-            <div key={index} className="image-wrapper">
-              <Image
-                width={400}
-                height={288}
-                src={image.src}
-                alt={image.alt}
-                className="thesis-image"
-                quality={75}
-              />
-              <span className="image-tooltip">{image.alt}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <h1>My Thesis</h1>
+      <BlockWithImage
+        leftContent={thesisData.leftContent}
+        images={thesisData.images}
+      />
     </div>
   );
 };

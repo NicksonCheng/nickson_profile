@@ -1,0 +1,20 @@
+{
+    "leftContent": {
+      "title": "Introduction",
+      "description": "This thesis explores innovative approaches to [your topic]. It focuses on designing and implementing a system that [brief goal]. Key contributions include [key point 1], [key point 2], and [key point 3]."
+    },
+    "images": [
+      {
+        "src": "/images/introduction.png",
+        "alt": "Thesis Introduction Diagram"
+      },
+      {
+        "src": "/images/architecture.png",
+        "alt": "System Architecture Diagram"
+      },
+      {
+        "src": "/images/architecture2.png",
+        "alt": "Alternative Architecture Diagram"
+      }
+    ]
+  }

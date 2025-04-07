@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../../styles/mainContent/about.scss";
+import "@/styles/mainContent/about.scss";
 import Image from "next/image";
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";

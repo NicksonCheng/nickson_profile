@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../../styles/mainContent/tab.scss";
+import "@/styles/mainContent/tab.scss";
 
 interface TabProps {
   openFiles: string[]; // List of open file names

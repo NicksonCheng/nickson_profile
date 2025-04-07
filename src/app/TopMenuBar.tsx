@@ -1,5 +1,6 @@
 import * as React from "react";
-import "../styles/topmenubar.scss";
+import { Alert } from "./Components/Alert";
+import "@/styles/topmenubar.scss";
 
 const menuItems = [
   "File",
@@ -13,13 +14,21 @@ const menuItems = [
 ];
 
 export const TopMenuBar: React.FC = () => {
+  const [isAlertOpen, setIsAlertOpen] = React.useState(false);
+
+  const handleFeatureClick = () => {
+    setIsAlertOpen(true); // Trigger alert
+  };
   return (
     <header>
       <nav>
         {menuItems.map((item) => (
-          <button key={item}>{item}</button>
+          <button onClick={handleFeatureClick} key={item}>
+            {item}
+          </button>
         ))}
       </nav>
+      <Alert isOpen={isAlertOpen} onClose={() => setIsAlertOpen(false)} />
     </header>
   );
 };
