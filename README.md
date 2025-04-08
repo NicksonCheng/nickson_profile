@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is my personal website write in next.js, including RWD design, feel free to used phone to browse this website.
+
+🔔 some function is still under development
+
+[here to link website](https://nicksonni.vercel.app/)
 
 ## Getting Started
 

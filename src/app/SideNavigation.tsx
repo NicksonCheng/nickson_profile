@@ -11,6 +11,7 @@ import { Alert } from "./Components/Alert";
 
 type NaviProps = {
   onClickIcon: (icon_name: string) => void;
+  // theme: string;
   className?: string;
 };
 

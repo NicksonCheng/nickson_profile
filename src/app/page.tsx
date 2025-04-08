@@ -25,7 +25,7 @@ export default function Home() {
   const [showFiles, setShowFiles] = React.useState(false);
   const [showTools, setShowTools] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
-  const [theme, setTheme] = React.useState<"dark" | "white">("dark"); // Add theme state
+  // const [theme, setTheme] = React.useState<"dark" | "white">("dark"); // Add theme state
 
   React.useEffect(() => {
     const checkMobile = () => window.innerWidth <= 768;
@@ -37,9 +37,9 @@ export default function Home() {
   }, []);
 
   // Apply theme class to the root element
-  React.useEffect(() => {
-    document.documentElement.className = theme;
-  }, [theme]);
+  // React.useEffect(() => {
+  //   document.documentElement.className = theme;
+  // }, [theme]);
 
   const handleFilenameChange = (filename: string) => {
     if (filename === "none") {
@@ -87,8 +87,7 @@ export default function Home() {
               className={`side-navigation ${
                 isMobile && showTools ? "visible" : ""
               }`}
-              theme={theme} // Pass theme
-              setTheme={setTheme} // Pass setTheme function
+              // theme={theme} // Pass theme
             />
           )}
           {showFiles && (
