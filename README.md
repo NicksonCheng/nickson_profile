@@ -2,7 +2,7 @@ This is my personal website write in next.js, including RWD design, feel free to
 
 🔔 some function is still under development
 
-[here to link website](https://nicksonni.vercel.app/)
+[here to link website](https://nickson.vercel.app/)
 
 ## Getting Started
 
