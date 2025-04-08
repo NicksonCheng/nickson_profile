@@ -1,20 +1,28 @@
 {
     "leftContent": {
-      "title": "Introduction",
-      "description": "This thesis explores innovative approaches to [your topic]. It focuses on designing and implementing a system that [brief goal]. Key contributions include [key point 1], [key point 2], and [key point 3]."
+      "title": "Abstract",
+      "description": "Heterogeneous graph embedding has recently advanced with two primary directions: self-supervised learning to address the scarcity of labeled data and metapath-free approaches to eliminate reliance on handcrafted, domain-specific metapaths. While metapath-free methods capture structural and semantic information directly from neighbor relationships, their performance often remains unstable across datasets and varying label scales, as they still rely on semi-supervised training. Conversely, self-supervised learning methods, including contrastive strategies and masked graph autoencoders, achieve remarkable results by extracting information intrinsically from the data. However, these approaches often depend on predefined metapaths, which limit their ability to generalize and constrain representation quality. This paper proposes Relation-aware Heterogeneous Masked Graph Autoencoder (RHMGA), a novel metapath-free self-supervised learning framework that bridges these gaps. Our method integrates a semantic relation network with masked graph autoencoders to jointly reconstruct node features and relation-specific adjacency matrices. By capturing both structural and semantic information during aggregation and reconstruction, RHMGA enables robust self-supervised pretraining without predefined metapaths. Extensive experiments demonstrate that our approach consistently outperforms state-of-the-art methods, achieving superior performance and adaptability across diverse heterogeneous graph datasets."
     },
     "images": [
       {
-        "src": "/images/introduction.png",
-        "alt": "Thesis Introduction Diagram"
+        "src": "/images/thesis/HG_embedding.png",
+        "alt": "Heterogeneous Graph Embedding",
+        "url":""
       },
       {
-        "src": "/images/architecture.png",
-        "alt": "System Architecture Diagram"
+        "src": "/images/thesis/framework_conference.png",
+        "alt": "Framework",
+        "url":""
       },
       {
-        "src": "/images/architecture2.png",
-        "alt": "Alternative Architecture Diagram"
+        "src": "/images/thesis/RAN.png",
+        "alt": "SRN",
+        "url":""
+      },
+      {
+        "src": "/images/thesis/relation_adj.png",
+        "alt": "Relation Adjacent Matrix Reconstruction",
+        "url":""
       }
     ]
   }

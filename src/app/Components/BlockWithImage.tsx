@@ -1,5 +1,6 @@
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import "@/styles/components/blockWithImage.scss";
 
 interface BlockWithImageProps {
@@ -12,9 +13,9 @@ interface BlockWithImageProps {
   images: {
     src: string;
     alt: string;
+    url: string;
     tooltip?: string;
   }[];
-  url: "https://official.ainimal.io/";
   className?: string;
 }
 
@@ -27,11 +28,30 @@ export const BlockWithImage: React.FC<BlockWithImageProps> = ({
   const rightRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (leftRef.current && rightRef.current) {
-      const rightHeight = rightRef.current.offsetHeight;
-      leftRef.current.style.maxHeight = `${rightHeight}px`;
+    const updateHeight = () => {
+      if (leftRef.current && rightRef.current) {
+        const rightHeight = rightRef.current.offsetHeight;
+        leftRef.current.style.maxHeight = `${rightHeight}px`;
+      }
+    };
+
+    const observer = new ResizeObserver(() => {
+      updateHeight();
+    });
+
+    if (rightRef.current) {
+      observer.observe(rightRef.current);
     }
-  }, [images]); // Re-run when images change
+
+    // Initial call
+    updateHeight();
+
+    return () => {
+      if (rightRef.current) {
+        observer.unobserve(rightRef.current);
+      }
+    };
+  }, [images]);
 
   return (
     <div className={`block-with-image ${className}`}>
@@ -53,17 +73,21 @@ export const BlockWithImage: React.FC<BlockWithImageProps> = ({
       </div>
       <div ref={rightRef} className="right-section">
         {images.map((image, index) => (
-          <div key={index} className="image-wrapper">
-            <Image
-              width={400}
-              height={288}
-              src={image.src}
-              alt={image.alt}
-              className="block-image"
-              quality={75}
-            />
-            <span className="image-tooltip">{image.tooltip || image.alt}</span>
-          </div>
+          <Link href={image.url} key={index}>
+            <div className="image-wrapper">
+              <Image
+                width={400}
+                height={288}
+                src={image.src}
+                alt={image.alt}
+                className="block-image"
+                quality={75}
+              />
+              <span className="image-tooltip">
+                {image.tooltip || image.alt}
+              </span>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

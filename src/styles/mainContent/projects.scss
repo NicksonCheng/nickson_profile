@@ -14,9 +14,9 @@
 
   .divider {
     font-size: 2em;
-    color: #f5a623;
+    color: #569cd6;
     margin: 1em 0;
-    border-bottom: 2px solid #f5a623;
+    border-bottom: 2px solid #569cd6;
     padding-bottom: 0.5em;
   }
 
@@ -46,7 +46,7 @@
           font-size: 24px;
           font-weight: bold;
           margin: 0;
-          color: #f5a623;
+          color: #569cd6;
         }
 
         .position {
@@ -81,7 +81,7 @@
             max-height: 18em;
             object-fit: contain;
             border-radius: 8px;
-            border: 2px solid #f5a623;
+            border: 2px solid #569cd6;
             background-color: #fff;
             transition: transform 0.1s ease;
           }
@@ -95,7 +95,7 @@
           .image-tooltip {
             visibility: hidden;
             width: 120px;
-            background-color: #f5a623;
+            background-color: #569cd6;
             color: #fff;
             text-align: center;
             border-radius: 6px;
@@ -225,7 +225,7 @@
     }
 
     &:hover {
-      color: #f5a623; // Hover to orange
+      color: #569cd6; // Hover to orange
     }
   }
 

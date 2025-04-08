@@ -11,6 +11,7 @@ interface ExperienceData {
   images: {
     src: string;
     alt: string;
+    url: string;
     tooltip?: string;
   }[];
 }

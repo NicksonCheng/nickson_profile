@@ -23,6 +23,7 @@ interface ProjectData {
   images: {
     src: string;
     alt: string;
+    url: string;
   }[];
   status: "ongoing" | "finished";
 }
@@ -88,7 +89,6 @@ export const Projects: React.FC = () => {
 
   return (
     <div className="projects">
-      <h1>Projects</h1>
       <div className="experience-projects">
         {ongoingProjects.length > 0 && (
           <>

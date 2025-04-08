@@ -10,6 +10,7 @@ interface ThesisData {
   images: {
     src: string;
     alt: string;
+    url: string;
   }[];
 }
 
@@ -27,7 +28,7 @@ export const Thesis: React.FC = () => {
 
   return (
     <div className="thesis">
-      <h1>My Thesis</h1>
+      <h1>Relation-aware Heterogeneous Masked Graph Autoencoder</h1>
       <BlockWithImage
         leftContent={thesisData.leftContent}
         images={thesisData.images}
