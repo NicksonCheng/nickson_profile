@@ -32,11 +32,11 @@ export const About: React.FC = () => {
   ];
   const description = (
     <>
-      I hold a Bachelor’s degree in Computer Science and Information Engineering
-      and a Master’s degree in Electrical Engineering from National Cheng Kung
-      University in Taiwan. I am currently seeking opportunities in Software
-      Engineering, Firmware Engineering, and Deep Learning Engineering. Below
-      are the skills I bring to the table:
+      &nbsp;&nbsp;I hold a Bachelor’s degree in Computer Science and Information
+      Engineering and a Master’s degree in Electrical Engineering from National
+      Cheng Kung University in Taiwan. I am currently seeking opportunities in
+      Software Engineering, Firmware Engineering, and Deep Learning Engineering.
+      Below are the skills I bring to the table:
       <br />
       <br />- <strong>Programming Languages</strong>: Proficient in C/C++,
       Python, TypeScript, JavaScript,xq Java, Bash, and SQL
