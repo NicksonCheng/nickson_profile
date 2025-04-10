@@ -5,6 +5,9 @@ import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 
 export const About: React.FC = () => {
+  const [isClickedBack, setIsClickedBack] = React.useState(false);
+  const [isHovered, setIsHovered] = React.useState(false);
+
   const socialLinks = [
     {
       Icon: FaLinkedin,
@@ -36,7 +39,7 @@ export const About: React.FC = () => {
       are the skills I bring to the table:
       <br />
       <br />- <strong>Programming Languages</strong>: Proficient in C/C++,
-      Python, TypeScript, JavaScript, Java, Bash, and SQL
+      Python, TypeScript, JavaScript,xq Java, Bash, and SQL
       <br />- <strong>Web Development</strong>: Experienced with React.js,
       Vue.js, Next.js, Node.js, MongoDB, and MySQL
       <br />- <strong>Additional Tools & Technologies</strong>: Skilled in Git,
@@ -47,6 +50,12 @@ export const About: React.FC = () => {
       innovative projects in these fields.
     </>
   );
+
+  // For mobile (≤768px), only use click state
+  // For desktop (>768px), use both hover and click states
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+  const showBack = isMobile ? isClickedBack : isHovered || isClickedBack;
+
   return (
     <div className="about">
       <div className="description">
@@ -70,14 +79,32 @@ export const About: React.FC = () => {
         </div>
       </div>
 
-      <div className="avatar-container">
-        <Image
-          width={500}
-          height={500}
-          src="/images/avatar.png"
-          alt="Profile avatar"
-          className="avatar-image"
-        />
+      <div
+        className={`avatar-container ${showBack ? "flipped" : ""}`}
+        onClick={() => setIsClickedBack(!isClickedBack)}
+        onMouseEnter={() => !isMobile && setIsHovered(true)}
+        onMouseLeave={() => !isMobile && setIsHovered(false)}
+      >
+        <div className="avatar-flipper">
+          <div className="avatar-front">
+            <Image
+              width={500}
+              height={500}
+              src="/images/avatar.png"
+              alt="Profile avatar front"
+              className="avatar-image"
+            />
+          </div>
+          <div className="avatar-back">
+            <Image
+              width={500}
+              height={500}
+              src="/images/avatar-back.png"
+              alt="Profile avatar back"
+              className="avatar-image"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
