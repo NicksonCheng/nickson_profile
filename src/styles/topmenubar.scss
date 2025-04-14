@@ -1,25 +1,35 @@
 header {
+  display: flex;
+  align-items: center;
+  padding: 0.875rem 1rem; // py-3.5 px-4
+  width: 100%;
+  background-color: #27272a; // zinc-800
+  border: 1px solid #494949;
+  height: 66px;
+  nav {
     display: flex;
-    align-items: center;
-    padding: 0.875rem 1rem; // py-3.5 px-4
-    width: 100%;
-    background-color: #27272a; // zinc-800
-    border: 1px solid #494949;
-    height: 66px;
-    nav {
-      display: flex;
-      gap: 1.25rem; // gap-5
-      font-size: 0.75rem; // text-xs
-      color: white;
-  
-      button {
-        cursor: pointer;
-        
-        &:hover {
-          opacity: 0.8;
-        }
-        
-        transition: opacity 0.2s ease; // transition-opacity
+    gap: 1.25rem; // gap-5
+    font-size: 0.75rem; // text-xs
+    color: white;
+
+    button {
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
       }
+
+      transition: opacity 0.2s ease; // transition-opacity
     }
   }
+}
+
+@media (max-width: 768px) {
+  header {
+    nav {
+      gap: 0.75rem; // gap-5
+      overflow-x: scroll;
+      scrollbar-width: none;
+    }
+  }
+}
