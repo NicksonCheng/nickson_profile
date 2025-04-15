@@ -39,7 +39,9 @@ export const About: React.FC = () => {
       Below are the skills I bring to the table:
       <br />
       <br />- <strong>Programming Languages</strong>: Proficient in C/C++,
-      Python, TypeScript, JavaScript,xq Java, Bash, and SQL
+      Python, TypeScript, JavaScript, Java, Bash, and SQL
+      <br />- <strong>Machine Learning/Deep Learning</strong>: Sophisticated in
+      PyTorch, Numpy, Scikit-learn, OpenCV, LLM, RAG, Graph Neural Network.
       <br />- <strong>Web Development</strong>: Experienced with React.js,
       Vue.js, Next.js, Node.js, MongoDB, and MySQL
       <br />- <strong>Additional Tools & Technologies</strong>: Skilled in Git,
