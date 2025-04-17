@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef, useEffect } from "react";
 import "@/styles/terminal.scss";
 import { IoClose } from "react-icons/io5";
