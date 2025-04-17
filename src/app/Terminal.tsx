@@ -65,7 +65,7 @@ export const Terminal: React.FC<TerminalProps> = ({
         return; // Exit early since we don't want to append the command to lines
       case "help":
         newLines.push(
-          "«",
+          "whoami",
           "about",
           "projects",
           "thesis",
