@@ -51,7 +51,7 @@ export const TopMenuBar: React.FC<TopMenuBarProps> = ({ onNewTerminal }) => {
     left: number;
   }>({ top: 0, left: 0 });
   const menuRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
-  const isMobile = window.innerWidth <= 768;
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
 
   const handleMenuClick = (menu: { label: string; options: string[] }) => {
     console.log(`Menu clicked: ${menu.label}`);
