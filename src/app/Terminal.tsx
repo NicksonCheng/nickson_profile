@@ -2,7 +2,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "@/styles/terminal.scss";
 import { IoClose } from "react-icons/io5";
-
 interface TerminalProps {
   onCommandNavigate?: (filename: string) => void;
   onClose: () => void;
@@ -14,6 +13,7 @@ export const Terminal: React.FC<TerminalProps> = ({
   onClose,
   clearTerminal,
 }) => {
+  const [asciiArt, setAsciiArt] = useState<string[]>([]);
   const [lines, setLines] = useState<string[]>([
     "Type 'help' to see available commands.",
   ]);
@@ -36,6 +36,15 @@ export const Terminal: React.FC<TerminalProps> = ({
 
   // Clear terminal content when clearTerminal prop changes
   useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("/data/sign.json");
+      const data = await res.json();
+      const output = [];
+      output.push(...data.nickson);
+      output.push(...data.additional_image);
+      setAsciiArt(output);
+    };
+    fetchData();
     if (clearTerminal) {
       setLines(["Type 'help' to see available commands."]);
       setInput("");
@@ -56,7 +65,7 @@ export const Terminal: React.FC<TerminalProps> = ({
         return; // Exit early since we don't want to append the command to lines
       case "help":
         newLines.push(
-          "whoami",
+          "«",
           "about",
           "projects",
           "thesis",
@@ -66,7 +75,7 @@ export const Terminal: React.FC<TerminalProps> = ({
         );
         break;
       case "whoami":
-        newLines.push("I am Nickson, nice to meet you");
+        newLines.push(...asciiArt);
         break;
       case "about":
         navigate("README.md");
