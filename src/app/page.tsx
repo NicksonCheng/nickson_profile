@@ -12,12 +12,13 @@ import { Tab } from "./MainContent/Tab";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import "@/styles/page.scss";
 import { TbNavigationFilled } from "react-icons/tb";
+
 export default function Home() {
   const mainpage = {
     "README.md": <About />,
     "experience.tsx": <Experience />,
     "projects.py": <Projects />,
-    "thesis.pdf": <Thesis />,
+    "thesis.tex": <Thesis />,
   };
 
   const [openFiles, setOpenFiles] = React.useState<string[]>(["README.md"]);

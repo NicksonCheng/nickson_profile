@@ -4,19 +4,23 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7); // Darker overlay for more contrast
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  transition: opacity 0.3s ease;
 
   .alert-modal {
     background: #fff;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 16px; // Softer rounded corners
+    padding: 24px;
     max-width: 600px;
     width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-out;
+    transform: translateY(20px); // Initial slide down effect
+    animation: slideIn 0.3s ease-out forwards;
 
     .alert-content {
       display: flex;
@@ -27,56 +31,106 @@
       .character-wrapper {
         position: relative;
         width: 100%;
-        height: 200px; // Matches the GIF height
+        height: 250px; // Increased height for a more balanced view
         background: #f5e9d8;
-        border-radius: 10px;
+        border-radius: 12px;
         overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 16px; // Space between the image and message
 
         .capybara-gif {
-          width: 300px; // Matches the GIF width
-          height: 200px; // Matches the GIF height
-          object-fit: contain; // Ensures the GIF scales properly without distortion
+          width: 300px;
+          height: auto; // Let the height scale proportionally
+          object-fit: contain;
         }
       }
 
       .message-wrapper {
-        margin-top: 20px;
-
         h2 {
-          font-size: 24px;
+          font-size: 26px;
           color: #333;
+          margin-bottom: 12px;
+          font-weight: 600;
         }
 
         p {
-          font-size: 16px;
+          font-size: 18px;
           color: #666;
-          margin: 10px 0;
+          margin: 10px 0 20px;
         }
 
-        .close-button {
-          padding: 10px 20px;
-          background: #f4a261;
-          border: none;
-          border-radius: 5px;
-          color: #fff;
-          font-size: 16px;
-          cursor: pointer;
+        .button-group {
+          display: flex;
+          justify-content: center;
+          gap: 12px; // Increase space between buttons
 
-          &:hover {
-            background: #e68a00;
+          button {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: inline-block;
+
+            &:hover {
+              opacity: 0.8;
+            }
+
+            &.yes-button {
+              background-color: #4caf50; // Green for positive action
+              color: white;
+
+              &:hover {
+                background-color: #45a049;
+              }
+            }
+
+            &.no-button {
+              background-color: #f44336; // Red for negative action
+              color: white;
+
+              &:hover {
+                background-color: #e53935;
+              }
+            }
+
+            &.close-button {
+              background-color: #007bff; // Blue for closing the modal
+              color: white;
+
+              &:hover {
+                background-color: #0056b3;
+              }
+            }
           }
         }
       }
     }
   }
+
+  // Animation for modal sliding in
+  @keyframes slideIn {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 }
+
+// Responsive for mobile
 @media (max-width: 768px) {
   .alert-overlay {
     .alert-modal {
-      width: 80%;
+      width: 90%;
+      padding: 16px;
     }
   }
 }

@@ -1,25 +1,55 @@
 header {
   display: flex;
   align-items: center;
-  padding: 0.875rem 1rem; // py-3.5 px-4
+  padding: 0.875rem 1rem;
   width: 100%;
-  background-color: #27272a; // zinc-800
-  border: 1px solid #494949;
+  background-color: #27272a;
+  border-bottom: 1px solid #494949;
   height: 66px;
+
   nav {
     display: flex;
-    gap: 1.25rem; // gap-5
-    font-size: 0.75rem; // text-xs
+    gap: 1.25rem;
+    font-size: 0.75rem;
     color: white;
 
-    button {
-      cursor: pointer;
+    .menu-item {
+      position: relative;
 
-      &:hover {
-        opacity: 0.8;
+      button {
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: inherit;
+        font: inherit;
+        padding: 0.5rem;
+
+        &:hover {
+          background-color: #3a3a3d;
+        }
       }
 
-      transition: opacity 0.2s ease; // transition-opacity
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #494949;
+        border: 1px solid #494949;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        min-width: 150px;
+
+        .dropdown-item {
+          padding: 0.5rem 1rem;
+          cursor: pointer;
+          white-space: nowrap;
+
+          &:hover {
+            background-color: #3a3a3d;
+          }
+        }
+      }
     }
   }
 }
@@ -27,8 +57,8 @@ header {
 @media (max-width: 768px) {
   header {
     nav {
-      gap: 0.75rem; // gap-5
-      overflow-x: scroll;
+      gap: 0.75rem;
+      overflow-x: auto;
       scrollbar-width: none;
     }
   }
