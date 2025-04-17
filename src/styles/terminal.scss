@@ -1,0 +1,107 @@
+.terminal {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  padding: 1rem;
+  font-family: monospace;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: height 0.2s ease;
+  border-top: 2px solid #3a3a3a;
+  position: relative;
+  min-height: 100px; /* Enforce minimum height via CSS */
+
+  /* Firefox scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #3a3a3a #1e1e1e;
+
+  /* WebKit (Chrome, Safari, Edge) scrollbar */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #1e1e1e;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #3a3a3a;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5a;
+  }
+
+  .terminal-header {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    color: #d4d4d4;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .close-button:hover {
+    color: #ff5555;
+  }
+
+  .terminal-line {
+    margin-bottom: 0.25rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .terminal-input-line {
+    width: 100%;
+
+    .terminal-prompt {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      color: inherit;
+      font-family: inherit;
+    }
+
+    .terminal-prefix {
+      white-space: nowrap;
+      margin-bottom: 0.25rem;
+    }
+
+    .terminal-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: inherit;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      resize: none;
+      overflow: hidden;
+      min-height: 1.5em;
+      white-space: pre-wrap;
+      word-break: break-word;
+      padding: 0;
+      line-height: 1.5em;
+    }
+  }
+}
+
+.resize-handle {
+  height: 6px;
+  background-color: #3a3a3a;
+  cursor: row-resize;
+  touch-action: none;
+  transition: background-color 0.2s;
+}
+
+.resize-handle:hover {
+  background-color: #5a5a5a;
+}

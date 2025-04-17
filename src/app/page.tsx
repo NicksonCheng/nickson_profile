@@ -12,6 +12,7 @@ import { Tab } from "./MainContent/Tab";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import "@/styles/page.scss";
 import { TbNavigationFilled } from "react-icons/tb";
+import { Terminal } from "./Terminal";
 
 export default function Home() {
   const mainpage = {
@@ -26,21 +27,23 @@ export default function Home() {
   const [showFiles, setShowFiles] = React.useState(false);
   const [showTools, setShowTools] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
-  // const [theme, setTheme] = React.useState<"dark" | "white">("dark"); // Add theme state
+  const [showTerminal, setShowTerminal] = React.useState(true); // Will be set in useEffect
+  const [clearTerminal, setClearTerminal] = React.useState(false);
 
   React.useEffect(() => {
     const checkMobile = () => window.innerWidth <= 768;
-    setIsMobile(checkMobile);
-    setShowFiles(!checkMobile());
-    const handleResize = () => setIsMobile(checkMobile());
+    const mobile = checkMobile();
+    setIsMobile(mobile);
+    setShowFiles(!mobile);
+    setShowTerminal(!mobile); // Default to closed on mobile, open on desktop
+    const handleResize = () => {
+      const newMobile = checkMobile();
+      setIsMobile(newMobile);
+      setShowFiles(!newMobile);
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  // Apply theme class to the root element
-  // React.useEffect(() => {
-  //   document.documentElement.className = theme;
-  // }, [theme]);
 
   const handleFilenameChange = (filename: string) => {
     if (filename === "none") {
@@ -77,10 +80,15 @@ export default function Home() {
     }
   };
 
+  const handleNewTerminal = () => {
+    setShowTerminal(true);
+    setClearTerminal((prev) => !prev); // Toggle to trigger clearing
+  };
+
   return (
     <div className="page-wrapper">
       <div className="page-content">
-        <TopMenuBar />
+        <TopMenuBar onNewTerminal={handleNewTerminal} />
         <div className="page-main">
           {(!isMobile || (isMobile && showTools)) && (
             <SideNavigation
@@ -88,7 +96,6 @@ export default function Home() {
               className={`side-navigation ${
                 isMobile && showTools ? "visible" : ""
               }`}
-              // theme={theme} // Pass theme
             />
           )}
           {showFiles && (
@@ -109,6 +116,13 @@ export default function Home() {
             <div className="content-section">
               {mainpage[activeFile as keyof typeof mainpage]}
             </div>
+            {showTerminal && (
+              <Terminal
+                onCommandNavigate={handleFilenameChange}
+                onClose={() => setShowTerminal(false)}
+                clearTerminal={clearTerminal}
+              />
+            )}
           </div>
         </div>
       </div>

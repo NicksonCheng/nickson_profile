@@ -5,7 +5,6 @@ import { FaPython } from "react-icons/fa";
 import { FaReact } from "react-icons/fa";
 import { FaFilePdf } from "react-icons/fa";
 import { SiOverleaf } from "react-icons/si";
-import { confirmAlert } from "react-confirm-alert";
 import { Alert } from "./Components/Alert";
 import { downloadFile } from "@/utils/utils";
 // import { FaJs } from "react-icons/fa";
