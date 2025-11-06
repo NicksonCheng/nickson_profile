@@ -9,6 +9,7 @@ interface BlockWithImageProps {
     subtitle?: string;
     items?: string[];
     description?: string;
+    url?: string;
   };
   images: {
     src: string;
@@ -55,7 +56,9 @@ export const BlockWithImage: React.FC<BlockWithImageProps> = ({
       <div ref={leftRef} className="left-section">
         <h2 className="title">{leftContent.title}</h2>
         {leftContent.subtitle && (
-          <h3 className="subtitle">{leftContent.subtitle}</h3>
+          <Link href={leftContent.url || "#"}>
+            <h3 className="subtitle">{leftContent.subtitle}</h3>
+          </Link>
         )}
         {leftContent.items && (
           <ul className="items-list">

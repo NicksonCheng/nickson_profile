@@ -28,15 +28,6 @@ export const Thesis: React.FC = () => {
 
   return (
     <div className="thesis">
-      <h1>
-        Metapath-Free Heterogeneous Network Embedding via Heterogeneous
-        Adjacency Matrix Reconstruction Based Mask Graph Autoencoders and
-        Semantic Relation Aggregation
-      </h1>
-      <a href="https://dsaa.ieee.org/2025/technical-program/">
-        Accepted paper at the IEEE/ACM International Conference on Data Science
-        and Advanced Analytics (DSAA 2025), with an acceptance rate of 37.61%.
-      </a>
       <BlockWithImage
         layout="vertical"
         leftContent={thesisData.leftContent}

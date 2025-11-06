@@ -44,7 +44,7 @@ export const Projects: React.FC = () => {
       "web_service",
       "MovieBot",
       "leecode",
-      "Sudoku",
+      "Real-Time-Traffic-Object-Detection",
     ];
 
     Promise.all([

@@ -32,8 +32,16 @@
 
     .subtitle {
       font-size: 18px;
-      color: #858585; // 柔和灰色，降低對比度
+      color: #858585;
       margin: 0;
+      transition: color 0.2s ease;
+
+      &:hover,
+      &:active {
+        color: #f5a623; // 橙色強調
+        animation: shake 0.5s;
+        cursor: pointer;
+      }
     }
 
     .items-list {
