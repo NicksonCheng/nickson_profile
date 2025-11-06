@@ -17,12 +17,14 @@ interface BlockWithImageProps {
     tooltip?: string;
   }[];
   className?: string;
+  layout?: "horizontal" | "vertical" | "reverse"; // ✅ 新增
 }
 
 export const BlockWithImage: React.FC<BlockWithImageProps> = ({
   leftContent,
   images,
   className = "",
+  layout = "horizontal", // ✅ 預設左右排列
 }) => {
   const leftRef = React.useRef<HTMLDivElement>(null);
   const rightRef = React.useRef<HTMLDivElement>(null);
@@ -39,22 +41,17 @@ export const BlockWithImage: React.FC<BlockWithImageProps> = ({
       updateHeight();
     });
 
-    if (rightRef.current) {
-      observer.observe(rightRef.current);
-    }
-
-    // Initial call
+    if (rightRef.current) observer.observe(rightRef.current);
     updateHeight();
 
     return () => {
-      if (rightRef.current) {
-        observer.unobserve(rightRef.current);
-      }
+      if (rightRef.current) observer.unobserve(rightRef.current);
     };
   }, [images]);
 
   return (
-    <div className={`block-with-image ${className}`}>
+    <div className={`block-with-image ${layout} ${className}`}>
+      {/* 左邊區塊 */}
       <div ref={leftRef} className="left-section">
         <h2 className="title">{leftContent.title}</h2>
         {leftContent.subtitle && (
@@ -71,6 +68,8 @@ export const BlockWithImage: React.FC<BlockWithImageProps> = ({
           <p className="description">{leftContent.description}</p>
         )}
       </div>
+
+      {/* 右邊區塊（圖片區） */}
       <div ref={rightRef} className="right-section">
         {images.map((image, index) => (
           <Link href={image.url} key={index}>
