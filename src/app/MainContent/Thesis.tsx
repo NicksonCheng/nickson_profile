@@ -32,6 +32,7 @@ export const Thesis: React.FC = () => {
         layout="vertical"
         leftContent={thesisData.leftContent}
         images={thesisData.images}
+        height="35em"
       />
     </div>
   );

@@ -40,11 +40,11 @@ export const Projects: React.FC = () => {
 
     const pinned = [
       "AIcup2024_RAG",
-      "nickson_profile",
-      "web_service",
+      "Lefty-app",
+      "Lefty_backend",
       "MovieBot",
-      "leecode",
-      "Real-Time-Traffic-Object-Detection",
+      "AIcup2025",
+      "nickson_profile",
     ];
 
     Promise.all([

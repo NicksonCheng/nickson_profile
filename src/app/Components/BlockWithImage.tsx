@@ -19,6 +19,7 @@ interface BlockWithImageProps {
   }[];
   className?: string;
   layout?: "horizontal" | "vertical" | "reverse"; // ✅ 新增
+  height?: string; // ✅ 新增：可自定義高度，預設 25em
 }
 
 export const BlockWithImage: React.FC<BlockWithImageProps> = ({
@@ -26,34 +27,15 @@ export const BlockWithImage: React.FC<BlockWithImageProps> = ({
   images,
   className = "",
   layout = "horizontal", // ✅ 預設左右排列
+  height = "25em", // ✅ 預設高度
 }) => {
-  const leftRef = React.useRef<HTMLDivElement>(null);
-  const rightRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const updateHeight = () => {
-      if (leftRef.current && rightRef.current) {
-        const rightHeight = rightRef.current.offsetHeight;
-        leftRef.current.style.maxHeight = `${rightHeight}px`;
-      }
-    };
-
-    const observer = new ResizeObserver(() => {
-      updateHeight();
-    });
-
-    if (rightRef.current) observer.observe(rightRef.current);
-    updateHeight();
-
-    return () => {
-      if (rightRef.current) observer.unobserve(rightRef.current);
-    };
-  }, [images]);
-
   return (
-    <div className={`block-with-image ${layout} ${className}`}>
+    <div
+      className={`block-with-image ${layout} ${className}`}
+      style={{ "--block-height": height } as React.CSSProperties}
+    >
       {/* 左邊區塊 */}
-      <div ref={leftRef} className="left-section">
+      <div className="left-section">
         <h2 className="title">{leftContent.title}</h2>
         {leftContent.subtitle && (
           <Link href={leftContent.url || "#"}>
@@ -73,7 +55,7 @@ export const BlockWithImage: React.FC<BlockWithImageProps> = ({
       </div>
 
       {/* 右邊區塊（圖片區） */}
-      <div ref={rightRef} className="right-section">
+      <div className="right-section">
         {images.map((image, index) => (
           <Link href={image.url} key={index}>
             <div className="image-wrapper">

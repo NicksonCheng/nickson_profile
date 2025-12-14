@@ -23,9 +23,9 @@
         "title": "KID Lab",
         "subtitle": "Machine Learning/Deep Learning Engineer",
         "items": [
-          "Participated in the AIcup 2024 Fall competition on Application of RAG and LLM in Financial Q&A; achieved 89.37% accuracy on a dataset of 900 questions, placing in the top 8% with a distinguished performance.",
-          "Developed a online midterm judging system using PHP, JavaScript, and SQL, enabling automated assessments and efficient management of exam submissions",
-          "Managed servers maintenance for the lab, including the NAS file system, Apache deployment for the lab website, and distribution of training resources on Linux"
+          "Participated in AIcup 2025 (Top 10%, developing a GRU-based stock surge prediction system using TensorFlow, SMOTE, and advanced feature selection) and AIcup 2024 Fall (Top 8%, building a financial RAG + LLM QA system with retrieval optimization and model fine-tuning)",
+          "Built an online midterm judging system (PHP, JS, SQL) with Nginx load balancing, boosting scalability and reliability.",
+          "Configured multi-GPU training environments (CUDA/cuDNN), ensuring stable resource allocation for concurrent deep learning experiments."
           
         ]
       },
