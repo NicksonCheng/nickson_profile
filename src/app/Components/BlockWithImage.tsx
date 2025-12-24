@@ -16,18 +16,19 @@ interface BlockWithImageProps {
     alt: string;
     url: string;
     tooltip?: string;
+    video?: boolean;
   }[];
   className?: string;
-  layout?: "horizontal" | "vertical" | "reverse"; // ✅ 新增
-  height?: string; // ✅ 新增：可自定義高度，預設 25em
+  layout?: "horizontal" | "vertical" | "reverse";
+  height?: string;
 }
 
 export const BlockWithImage: React.FC<BlockWithImageProps> = ({
   leftContent,
   images,
   className = "",
-  layout = "horizontal", // ✅ 預設左右排列
-  height = "25em", // ✅ 預設高度
+  layout = "horizontal",
+  height = "25em",
 }) => {
   return (
     <div
@@ -37,11 +38,13 @@ export const BlockWithImage: React.FC<BlockWithImageProps> = ({
       {/* 左邊區塊 */}
       <div className="left-section">
         <h2 className="title">{leftContent.title}</h2>
+
         {leftContent.subtitle && (
           <Link href={leftContent.url || "#"}>
             <h3 className="subtitle">{leftContent.subtitle}</h3>
           </Link>
         )}
+
         {leftContent.items && (
           <ul className="items-list">
             {leftContent.items.map((item, idx) => (
@@ -49,26 +52,42 @@ export const BlockWithImage: React.FC<BlockWithImageProps> = ({
             ))}
           </ul>
         )}
+
         {leftContent.description && (
           <p className="description">{leftContent.description}</p>
         )}
       </div>
 
-      {/* 右邊區塊（圖片區） */}
+      {/* 右邊區塊 */}
       <div className="right-section">
-        {images.map((image, index) => (
-          <Link href={image.url} key={index}>
+        {images.map((media, index) => (
+          <Link href={media.url} key={index}>
             <div className="image-wrapper">
-              <Image
-                width={400}
-                height={288}
-                src={image.src}
-                alt={image.alt}
-                className="block-image"
-                quality={75}
-              />
+              {media.video ? (
+                <video
+                  className="block-image"
+                  width={400}
+                  height={288}
+                  muted
+                  loop
+                  autoPlay
+                  playsInline
+                >
+                  <source src={media.src} type="video/mp4" />
+                </video>
+              ) : (
+                <Image
+                  width={400}
+                  height={288}
+                  src={media.src}
+                  alt={media.alt}
+                  className="block-image"
+                  quality={75}
+                />
+              )}
+
               <span className="image-tooltip">
-                {image.tooltip || image.alt}
+                {media.tooltip || media.alt}
               </span>
             </div>
           </Link>

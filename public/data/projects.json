@@ -81,5 +81,35 @@
         }
       ],
       "status": "finished"
+    },
+    {
+      "leftContent": {
+        "title": "Embedded System Design for a Bluetooth Controlled Anti-Collision Car ",
+        "subtitle": "MCU/UART/Embedding System",
+        "items": [
+          "Software-Firmware Bridge Development: Developed a custom wireless control interface using Android Studio to communicate with the embedded system via Bluetooth (HC-06 module)",
+          "Reliable UART Protocol: Established the data link and communication protocol between the mobile application and the PIC18F4520 microcontroller using UART (Universal Asynchronous Receiver/Transmitter)",
+          "Asynchronous Interrupt Programming: Implemented and managed UART interrupts using C programming language to handle and parse incoming asynchronous data streams (control commands) in real-time, ensuring low-latency vehicle response"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/projects/demo.mp4",
+          "alt": "framwork",
+          "url":"",
+          "video": true
+        },
+        {
+          "src": "/images/projects/MCU_architecture.png",
+          "alt": "framwork",
+          "url":""
+        },
+                {
+          "src": "/images/projects/MCU_flowchart.png",
+          "alt": "framwork",
+          "url":""
+        }
+      ],
+      "status": "finished"
     }
   ]
